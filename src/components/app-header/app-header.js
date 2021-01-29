@@ -6,10 +6,10 @@ import './app-header.scss';
 const AppHeader = ({total}) => {
     return (
         <header className="header">
-            <Link className="header__link" href="#">
+            <Link className="header__link" to="#">
                 Menu
             </Link>
-            <Link className="header__link" href="#">
+            <Link className="header__link" to="#">
                 <img className="header__cart" src={cartIcon} alt="cart"></img>
                 Total: {total} $
             </Link>
