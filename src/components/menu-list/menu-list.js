@@ -5,6 +5,7 @@ import WithRestoService from '../hoc'
 import {menuLoaded, menuRequested, menuError} from '../../actions';
 import Spinner from '../spinner';
 import Error from '../error';
+import {withRouter} from 'react-router-dom';
 
 import './menu-list.scss';
 
@@ -15,7 +16,7 @@ class MenuList extends Component {
         const {RestoService, menuLoaded, menuError} = this.props;
         RestoService.getMenuItems()
             .then(res => menuLoaded(res))
-            .catch(menuError());
+            .catch(error => menuError());
     }
 
     render() {
@@ -24,13 +25,19 @@ class MenuList extends Component {
         if (error) {
             return <Error />
         }
-
         if (loading) {
             return <Spinner />
         }
+        
+
 
         const items = menuItems.map(menuItem => {
-            return <MenuListItem key={menuItem.id} menuItem={menuItem}/>
+            return <MenuListItem 
+                onItemSelected={(ItemId, ItemName) => {
+                    this.props.history.push(`${ItemName}/${ItemId}`);
+                }}
+                key={menuItem.id} 
+                menuItem={menuItem}/>
         });
 
         return (
@@ -60,4 +67,4 @@ const View = (items) => {
 }
 
 
-export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuList));
+export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuList)));
