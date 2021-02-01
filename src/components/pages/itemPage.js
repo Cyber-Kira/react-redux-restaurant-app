@@ -16,8 +16,8 @@ class ItemPage extends Component {
     }
 
     render() {
-        const {menuItems, loading, error, ItemId} = this.props;
-
+        const {loading, error} = this.props;
+        
         if (error) {
             return <Error />
         }
@@ -25,8 +25,7 @@ class ItemPage extends Component {
         if (loading) {
             return <Spinner />
         }
-
-        const item = menuItems[ItemId - 1];
+        const item = this.props.menuItems.find(el => +el.id === +this.props.match.params.id)
 
         return (
             View(item)
