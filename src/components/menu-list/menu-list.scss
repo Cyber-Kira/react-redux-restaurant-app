@@ -7,4 +7,11 @@
         align-items: flex-start;
         flex-wrap: wrap;
     }
+    &__list li {
+        box-shadow: 0 5px 10px rgb(44, 44, 44);
+    }
+    &__list li:hover {
+        transition: .3s;
+        box-shadow: 0 5px 25px rgb(145, 145, 145);
+    }
 }
