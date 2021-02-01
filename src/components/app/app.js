@@ -12,15 +12,8 @@ const App = () => {
             <AppHeader total={50}/>
             <Switch>
                 <Route exact path="/" component={MainPage}/>
-                <Route path='/:item/:id' render={
-                            ({match}) => {
-                                const {id} = match.params;
-
-                                return <ItemPage ItemId={id}/>
-                            }
-                        } />
                 <Route path="/cart" component={CartPage} />
-                <Route exact component={MainPage}/>
+                <Route path = '/:id' component ={ItemPage}/>
             </Switch>
         </div>
     )
