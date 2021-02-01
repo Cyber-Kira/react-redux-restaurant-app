@@ -4,6 +4,7 @@ import AppHeader from '../app-header';
 import {Switch, Route} from 'react-router-dom';
 
 import Background from './food-bg.jpg';
+import ItemPage from '../pages/itemPage';
 
 const App = () => {
     return (
@@ -11,6 +12,13 @@ const App = () => {
             <AppHeader total={50}/>
             <Switch>
                 <Route exact path="/" component={MainPage}/>
+                <Route path='/:item/:id' render={
+                            ({match}) => {
+                                const {id} = match.params;
+
+                                return <ItemPage ItemId={id}/>
+                            }
+                        } />
                 <Route path="/cart" component={CartPage} />
                 <Route exact component={MainPage}/>
             </Switch>
