@@ -12,7 +12,7 @@ class ItemPage extends Component {
         const {RestoService, menuLoaded, menuError} = this.props;
         RestoService.getMenuItems()
             .then(res => menuLoaded(res))
-            .catch(menuError());
+            .catch(error => menuError());
     }
 
     render() {
