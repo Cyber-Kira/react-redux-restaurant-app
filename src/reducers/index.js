@@ -2,7 +2,8 @@ const initialState = {
     menu: [],
     loading: true,
     error: false,
-    items: []
+    items: [],
+    qtty: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -38,7 +39,7 @@ const reducer = (state = initialState, action) => {
                     price: item.price,
                     url: item.url,
                     id: item.id,
-                    count: state.items[itemIndex].count + 1
+                    qtty: state.items[itemIndex].qtty + 1
                 }
                 return {
                     ...state,
@@ -54,7 +55,7 @@ const reducer = (state = initialState, action) => {
                 price: item.price,
                 url: item.url,
                 id: item.id,
-                count: 1
+                qtty: 1
             }
             localStorage.setItem('state', state);
             return {
