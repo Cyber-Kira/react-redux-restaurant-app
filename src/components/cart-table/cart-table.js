@@ -18,6 +18,7 @@ const CartTable = ({items, deleteFromCart, RestoService}) => {
                                 <div className="cart__item-title">{title}</div>
                                 <div className="cart__item-price">{price}$</div>
                                 <div className="cart__item-price">Количество: {qtty}</div>
+                                <div className="cart__item-price">Всего: {qtty * price}$</div>
                                 <div onClick={() => deleteFromCart(id)} className="cart__close">&times;</div>
                             </div>
                         )
