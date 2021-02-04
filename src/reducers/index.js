@@ -3,7 +3,7 @@ const initialState = {
     loading: true,
     error: false,
     items: [],
-    qtty: []
+    totalPrice: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -47,9 +47,11 @@ const reducer = (state = initialState, action) => {
                         ...state.items.slice(0, itemIndex),
                         newItem,
                         ...state.items.slice(itemIndex + 1)
-                    ]
+                    ],
+                    totalPrice: state.totalPrice + newItem.price
                 }
             }
+
             const newItem = {
                 title: item.title,
                 price: item.price,
@@ -57,13 +59,13 @@ const reducer = (state = initialState, action) => {
                 id: item.id,
                 qtty: 1
             }
-            localStorage.setItem('state', state);
             return {
                 ...state,
                 items: [
                     ...state.items
                     ,newItem
-                ]
+                ],
+                totalPrice: state.totalPrice + newItem.price
             };
         case "ITEM_REMOVE_FROM_CART":
             const index = action.payload;
