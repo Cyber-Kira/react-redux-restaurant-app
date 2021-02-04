@@ -31,12 +31,32 @@ const reducer = (state = initialState, action) => {
         case "ITEM_ADD_TO_CART":
             const id = action.payload;
             const item = state.menu.find(item => item.id === id);
+            if (state.items.find(munuItem => id === munuItem.id)) {
+                const itemIndex = state.items.findIndex(item => item.id === id);
+                const newItem = {
+                    title: item.title,
+                    price: item.price,
+                    url: item.url,
+                    id: item.id,
+                    count: state.items[itemIndex].count + 1
+                }
+                return {
+                    ...state,
+                    items: [
+                        ...state.items.slice(0, itemIndex),
+                        newItem,
+                        ...state.items.slice(itemIndex + 1)
+                    ]
+                }
+            }
             const newItem = {
                 title: item.title,
                 price: item.price,
                 url: item.url,
-                id: item.id
+                id: item.id,
+                count: 1
             }
+            localStorage.setItem('state', state);
             return {
                 ...state,
                 items: [
