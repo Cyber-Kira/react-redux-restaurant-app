@@ -75,7 +75,8 @@ const reducer = (state = initialState, action) => {
                 items: [
                     ...state.items.slice(0, itemIndex),
                     ...state.items.slice(itemIndex + 1)
-                ]
+                ],
+                totalPrice: +state.totalPrice - +(state.items[itemIndex].price * state.items[itemIndex].qtty)
             };
         default:
             return state;
